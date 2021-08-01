@@ -7,7 +7,15 @@ const middlewarePackage = (req, res, next) => {
   next()
   let eTime = new Date()
   let tatal = eTime - sTime
-  console.log(`${tatal}`, '|', req.method, 'form', req.originalUrl)
+  console.log(
+   Date(),
+    '|',
+    req.method,
+    'form',
+    req.originalUrl,
+    'total time:',
+    `${tatal}`, 'ms'
+  )
   next()
 }
 
