@@ -2,19 +2,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.use((req, res, next) => {
-  console.log('Date', Date())
-  next()
-})
-app.use('/user/:id', function (req, res, next) {
-  console.log('route:', res.on())
-  next()
-})
+const middlewarePackage = (req, res, next) => {
+    console.log('Date', Date())
+    next()
+    console.log(req.originalUrl)
+    next()
+    console.log(req.method)
+}
 
-app.use((req, res, next) => {
-  console.log('Request Type:', req.method)
-  next()
-})
+app.use(middlewarePackage)
 
 app.get('/', (req, res) => {
   res.send('列出全部 Todo')
