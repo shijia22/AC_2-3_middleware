@@ -3,11 +3,8 @@ const app = express()
 const port = 3000
 
 const middlewarePackage = (req, res, next) => {
-    console.log('Date', Date())
+    console.log(Date(), '|',req.method, 'form',req.originalUrl)
     next()
-    console.log(req.originalUrl)
-    next()
-    console.log(req.method)
 }
 
 app.use(middlewarePackage)
