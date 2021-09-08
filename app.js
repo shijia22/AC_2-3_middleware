@@ -1,21 +1,20 @@
 const express = require('express')
+const moment = require('moment')
 const app = express()
 const port = 3000
 
 const middlewarePackage = (req, res, next) => {
-  let sTime = new Date()
-  next()
-  let eTime = new Date()
-  let tatal = eTime - sTime
-  console.log(
-   Date(),
-    '|',
-    req.method,
-    'form',
-    req.originalUrl,
-    'total time:',
-    `${tatal}`, 'ms'
-  )
+  const Time = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+  const reqTime = Date.now()
+  const method = req.method
+  const URL = req.originalUrl
+
+  res.on('finish', () => {
+    const resTime = Date.now()
+    console.log(
+      `${Time} | ${method} from ${URL} | total time: ${resTime - reqTime}ms`
+    )
+  })
   next()
 }
 
